@@ -15,103 +15,6 @@
         <script src="js/STLLoader.js"></script>
         <script src="js/DDSLoader.js"></script>
 		<script src="js/MTLLoader.js"></script>
-<<<<<<< HEAD
-<<<<<<< HEAD
-		<script src="js/OBJMTLLoader.js"></script>
-
-        <script>
-            var scene = new THREE.Scene();
-            var camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 0.1, 10000 );
-            var renderer = new THREE.WebGLRenderer();
-            renderer.setSize( window.innerWidth, window.innerHeight );
-            document.body.appendChild( renderer.domElement );
-            
-            // MATERIALS
-            var wallMaterial = new THREE.MeshBasicMaterial({ color: 0x834339 });
-            
-            /*
-            var floorTexture = THREE.ImageUtils.loadTexture( 'img/floortexture.jpg' );
-            floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
-			floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping;
-			floorTexture.repeat.set( 2,2 );
-            var floorMaterial = new THREE.MeshBasicMaterial({ map: floorTexture });
-            */
-           var floorMaterial = new THREE.MeshBasicMaterial({ color:  0xA1815B });
-            
-            var roofMaterial = new THREE.MeshBasicMaterial({ color: 0xA88E7F });
-            
-            var frameMaterial = new THREE.MeshBasicMaterial({ color: 0x917B42 });
-            
-   
-            
-            
-            var texturemonet = THREE.ImageUtils.loadTexture( "img/monet.jpg" );
-            var artMaterial = new THREE.MeshBasicMaterial({ color: 0x917B42, map: texturemonet });
-            
-            //LIGHTS:
-            var ambient = new THREE.AmbientLight( 0x444444 );
-				scene.add( ambient );
-
-			var directionalLight = new THREE.DirectionalLight( 0xffeedd );
-				directionalLight.position.set( 0, 0, 1 ).normalize();
-				scene.add( directionalLight );
-				
-            
-            //HAND MODEL:
-            var handmesh;
-            var loader = new THREE.STLLoader();
-				loader.addEventListener( 'load', function ( event ) {
-					var geometry = event.content;
-					var materialhand = new THREE.MeshPhongMaterial( { ambient: 0x555555, color: 0xAAAAAA, specular: 0x111111, shininess: 200 } );
-					handmesh = new THREE.Mesh( geometry, materialhand );
-					
-				
-					
-					handmesh.scale.set( 5, 5, 5 );
-				
-					
-					console.log(handmesh);
-					scene.add( handmesh );
-					
-				} );
-				loader.load( "models/hand.stl" );
-				
-			
-				//FRAME 3MODEL:
-				var onProgress = function ( xhr ) {
-					if ( xhr.lengthComputable ) {
-						var percentComplete = xhr.loaded / xhr.total * 100;
-						console.log( Math.round(percentComplete, 2) + '% downloaded' );
-					}
-				};
-
-				var onError = function ( xhr ) {
-				};
-				
-				THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader() );
-				
-				var loader = new THREE.OBJMTLLoader();
-				loader.load( 'models/frame/painting_frame.obj', 'models/frame/painting_frame.mtl', function ( object ) {
-
-					object.position.x = +194;
-					object.rotation.set(0,170,0);
-					object.scale.set(8,8,8);
-					//object.scale(4);
-					scene.add( object );
-
-				}, onProgress, onError );
-				
-				
-			
-				
-				
-				
-				
-            
-            // texture.wrapS = THREE.RepeatWrapping;
-            // texture.wrapT = THREE.RepeatWrapping;
-            // texture.repeat.set( 4, 4 );
-=======
         <script src="js/OBJLoader.js"></script>
 		<script src="js/OBJMTLLoader.js"></script>
         <script src="js/ColladaLoader.js"></script>
@@ -120,24 +23,12 @@
 
         <script>
             var scene = new THREE.Scene();
-=======
-        <script src="js/OBJLoader.js"></script>
-		<script src="js/OBJMTLLoader.js"></script>
-        <script src="js/ColladaLoader.js"></script>
-        <script src="js/Tween.js"></script>
-        
-
-        <script>
-            var scene = new THREE.Scene();
->>>>>>> upstream/master
             var camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 0.01, 10000 );
             var renderer = new THREE.WebGLRenderer();
             renderer.setSize( window.innerWidth, window.innerHeight );
             document.body.appendChild( renderer.domElement );
-
             var armObject;
         
-
             // MATERIALS
             var wallMaterial = new THREE.MeshPhongMaterial({ color: 0x960912 });
             var floorMaterial = new THREE.MeshBasicMaterial({ color: 0xA1815B });
@@ -146,76 +37,40 @@
             
             var textureMonet = THREE.ImageUtils.loadTexture( "img/monet.jpg" );
             var artMaterial = new THREE.MeshPhongMaterial({ map: textureMonet });
-
             // FLOOR TEXTURE
             var floorTexture = new THREE.ImageUtils.loadTexture( 'img/woodfloor.jpg' );
             floorTexture.wrapS = floorTexture.wrapT = THREE.RepeatWrapping; 
             floorTexture.repeat.set( 1, 1 );
             var floorMaterial = new THREE.MeshBasicMaterial( { map: floorTexture, side: THREE.DoubleSide } );
             var woodFloorMaterial = new THREE.MeshPhongMaterial({ map: floorTexture });
-
              
-
             // GENERAL LIGHT
             var pointLight = new THREE.PointLight(0xffffff, 0.6);
             pointLight.position.y = +150;
             scene.add(pointLight);
-
             // SPOTLIGHT ON MONET
             var spotLight = new THREE.SpotLight( 0xffffff, 0.4 );
             spotLight.position.set( -150, 80, 0 );
-
             spotLight.castShadow = true;
-
             spotLight.shadowMapWidth = 1024;
             spotLight.shadowMapHeight = 1024;
-
             spotLight.shadowCameraNear = 500;
             spotLight.shadowCameraFar = 4000;
             spotLight.shadowCameraFov = 30;
-<<<<<<< HEAD
-
             scene.add( spotLight );
-
-
-
                             
        
             // HAND
-=======
-
-            scene.add( spotLight );
->>>>>>> upstream/master
-
             // var manager = new THREE.LoadingManager();
             //     manager.onProgress = function ( item, loaded, total ) {
             //         console.log( item, loaded, total );
             // };
-
-<<<<<<< HEAD
-=======
-
-                            
-       
-            // HAND
-
-            // var manager = new THREE.LoadingManager();
-            //     manager.onProgress = function ( item, loaded, total ) {
-            //         console.log( item, loaded, total );
-            // };
-
->>>>>>> upstream/master
             // var loader = new THREE.OBJLoader( manager );
             // loader.load( '/models/arm_color4.obj',  function ( object ) {
-
             //     armObject = object;
             //     scene.add( object );
             //     render();
-
             // }, onProgress, onError );
-
-
-
             // loader = new THREE.JSONLoader();
             // loader.load( "js/armdoublesided.js", function( geometry, materials ) {
                 
@@ -225,75 +80,49 @@
             
             // });
         
-
-
             // loader = new THREE.JSONLoader();
             // loader.load( "js/paintingframe.js", function( geometry, materials ) {
                 
             //     var object = new THREE.Mesh(geometry, new THREE.MeshFaceMaterial(materials));
-
             //     object.position.x = +180;
             //     object.position.y = -8;
             //     object.rotation.set(0,-410,0);
             //     object.scale.set(10,11,10);
             //     scene.add( object );
-
-
             
             // });
         
-
-
-
-
-
             // ARM
-
             var loader = new THREE.ColladaLoader();
             loader.options.convertUpAxis = true;
             loader.load( 'models/onearm2.dae', function ( collada ) {
-
                 dae = collada.scene;
                 scene.add( dae );
                 armObject = dae;
-
                 });
-
-
-
+                
             //FRAME 3MODEL
-
             var onProgress = function ( xhr ) {
                 if ( xhr.lengthComputable ) {
                     var percentComplete = xhr.loaded / xhr.total * 100;
                     console.log( Math.round(percentComplete, 2) + '% downloaded' );
                 }
             };
-
             var onError = function ( xhr ) {};
             THREE.Loader.Handlers.add( /\.dds$/i, new THREE.DDSLoader());
-
             var loader = new THREE.OBJMTLLoader();
             loader.load( 'models/frame/paintingframe_new.obj', 'models/frame/paintingframe_new.mtl', function ( object ) {
-
                 object.position.x = +199;
                 object.position.y = -8;
                 object.rotation.set(0,-410,0);
                 object.scale.set(10,11,10);
                 //object.scale(4);
                 scene.add( object );
-
             }, onProgress, onError );
         
-
-
-
-
             $(document).keydown( function(key){
-
                 if (key.keyCode == 32) {
                     
-
                     function animate(armObject) {
                     // var materials = skinnedMesh.material.materials;
                  
@@ -305,22 +134,9 @@
                     animation = new THREE.Animation(skinnedMesh, "ArmatureAction", THREE.AnimationHandler.CATMULLROM);
                     animation.play();
                 }
-
-
                 }
             
-
-
-
             });
-
-
-
-
-
-
-
-
             
     //         //HAND MODEL:
     //         var handmesh;
@@ -342,18 +158,11 @@
 				// loader.load( "models/hand.stl" );
 				
 		
-
-
 	
 			
             // texture.wrapS = THREE.RepeatWrapping;
             // texture.wrapT = THREE.RepeatWrapping;
             // texture.repeat.set( 4, 4 );
-
-<<<<<<< HEAD
->>>>>>> upstream/master
-=======
->>>>>>> upstream/master
             // BACK WALL
             var backWallGeometry = new THREE.BoxGeometry( 400, 200, 10 );
             var backWall = new THREE.Mesh( backWallGeometry, wallMaterial );
@@ -391,23 +200,6 @@
             scene.add( roof );
             
             // MONET FRAME
-<<<<<<< HEAD
-<<<<<<< HEAD
-            var frameGeometry = new THREE.BoxGeometry( 1, 50, 75 );
-            var frame = new THREE.Mesh( frameGeometry, artMaterial );
-            frame.position.x = +195;
-            scene.add( frame );
-            console.log(artMaterial);
-            
-            
-            // Add MONET IMAGE
-            // var img = new THREE.MeshBasicMaterial({map:THREE.ImageUtils.loadTexture('img/monet.jpg')});
-            // // img.position.x = -180;
-            // img.map.needsUpdate = true; //ADDED
-            // var ambientLight = new THREE.AmbientLight(0xbbbbbb);
-            // scene.add(ambientLight);
-            
-=======
             var frameGeometry = new THREE.BoxGeometry( 1, 55, 75 );
             var frame = new THREE.Mesh( frameGeometry, artMaterial );
             frame.position.x = +195;
@@ -417,31 +209,9 @@
             spotLight.target = frame;
             
             
-
-
             // if ( keyCode = 49 ){
             //     console.log('space');
             // }
-
-
-=======
-            var frameGeometry = new THREE.BoxGeometry( 1, 55, 75 );
-            var frame = new THREE.Mesh( frameGeometry, artMaterial );
-            frame.position.x = +195;
-            frame.position.y = +2;
-            scene.add( frame );
-            console.log(artMaterial);
-            spotLight.target = frame;
-            
-            
-
-
-            // if ( keyCode = 49 ){
-            //     console.log('space');
-            // }
-
-
->>>>>>> upstream/master
             // if (event.type == "keydown") {
             //     //some browsers support evt.charCode, some only evt.keyCode
             //    // if (event.charCode) {
@@ -451,60 +221,19 @@
             //    //    var charCode = event.keyCode;
             //    // }
             //    console.log('keydown');
-
             // }
-
-
-
-
-
-
             // FPS CAMERA
-<<<<<<< HEAD
->>>>>>> upstream/master
-=======
->>>>>>> upstream/master
             camera.position.z = 0;
             controls = new THREE.FirstPersonControls( camera );
             controls.movementSpeed = 500000;
             controls.lookSpeed = 300;
             controls.lookVertical = false;           
             var clock = new THREE.Clock();
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
             
->>>>>>> upstream/master
-=======
-            
->>>>>>> upstream/master
             function render() {
                 requestAnimationFrame( render );
                 var t = clock.getElapsedTime(); 
                 controls.update( clock.getDelta() );
-<<<<<<< HEAD
-<<<<<<< HEAD
-                renderer.render( scene, camera );
-                
-                	var pos = camera.position;
-					var rot = camera.rotation;
-					
-					handmesh.rotation.x = rot.x;
-					handmesh.rotation.y = rot.y;
-					handmesh.rotation.z = rot.z;
-					
-					handmesh.position.x = pos.x + 60;
-					handmesh.position.y = pos.y + 80;
-					handmesh.position.z = pos.z - 120;
-					
-            }
-            render();
-        </script>
-    </body>
-</html>
-=======
-=======
->>>>>>> upstream/master
                 
                 
                 	var pos = camera.position;
@@ -513,34 +242,15 @@
                     armObject.position.y = camera.position.y - 0.07;
                     armObject.position.x = camera.position.x;
                     armObject.position.z = camera.position.z;
-
                     armObject.rotation.y = camera.rotation.y;
                     armObject.rotation.x = camera.rotation.x;
                     armObject.rotation.z = camera.rotation.z;
-
 			         renderer.render( scene, camera );	
           
-
             }
-
             // render();
-
             render();
-
-
         </script>
     </body>
 </html>
 
-
-
-
-
-
-
-
-
-<<<<<<< HEAD
->>>>>>> upstream/master
-=======
->>>>>>> upstream/master
