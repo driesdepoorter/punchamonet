@@ -16,6 +16,7 @@
         <script src="js/DDSLoader.js"></script>
 		<script src="js/MTLLoader.js"></script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<script src="js/OBJMTLLoader.js"></script>
 
         <script>
@@ -119,6 +120,16 @@
 
         <script>
             var scene = new THREE.Scene();
+=======
+        <script src="js/OBJLoader.js"></script>
+		<script src="js/OBJMTLLoader.js"></script>
+        <script src="js/ColladaLoader.js"></script>
+        <script src="js/Tween.js"></script>
+        
+
+        <script>
+            var scene = new THREE.Scene();
+>>>>>>> upstream/master
             var camera = new THREE.PerspectiveCamera( 100, window.innerWidth / window.innerHeight, 0.01, 10000 );
             var renderer = new THREE.WebGLRenderer();
             renderer.setSize( window.innerWidth, window.innerHeight );
@@ -162,10 +173,27 @@
             spotLight.shadowCameraNear = 500;
             spotLight.shadowCameraFar = 4000;
             spotLight.shadowCameraFov = 30;
+<<<<<<< HEAD
 
             scene.add( spotLight );
 
 
+
+                            
+       
+            // HAND
+=======
+
+            scene.add( spotLight );
+>>>>>>> upstream/master
+
+            // var manager = new THREE.LoadingManager();
+            //     manager.onProgress = function ( item, loaded, total ) {
+            //         console.log( item, loaded, total );
+            // };
+
+<<<<<<< HEAD
+=======
 
                             
        
@@ -176,6 +204,7 @@
             //         console.log( item, loaded, total );
             // };
 
+>>>>>>> upstream/master
             // var loader = new THREE.OBJLoader( manager );
             // loader.load( '/models/arm_color4.obj',  function ( object ) {
 
@@ -321,6 +350,9 @@
             // texture.wrapT = THREE.RepeatWrapping;
             // texture.repeat.set( 4, 4 );
 
+<<<<<<< HEAD
+>>>>>>> upstream/master
+=======
 >>>>>>> upstream/master
             // BACK WALL
             var backWallGeometry = new THREE.BoxGeometry( 400, 200, 10 );
@@ -360,6 +392,7 @@
             
             // MONET FRAME
 <<<<<<< HEAD
+<<<<<<< HEAD
             var frameGeometry = new THREE.BoxGeometry( 1, 50, 75 );
             var frame = new THREE.Mesh( frameGeometry, artMaterial );
             frame.position.x = +195;
@@ -391,6 +424,24 @@
             // }
 
 
+=======
+            var frameGeometry = new THREE.BoxGeometry( 1, 55, 75 );
+            var frame = new THREE.Mesh( frameGeometry, artMaterial );
+            frame.position.x = +195;
+            frame.position.y = +2;
+            scene.add( frame );
+            console.log(artMaterial);
+            spotLight.target = frame;
+            
+            
+
+
+            // if ( keyCode = 49 ){
+            //     console.log('space');
+            // }
+
+
+>>>>>>> upstream/master
             // if (event.type == "keydown") {
             //     //some browsers support evt.charCode, some only evt.keyCode
             //    // if (event.charCode) {
@@ -409,6 +460,9 @@
 
 
             // FPS CAMERA
+<<<<<<< HEAD
+>>>>>>> upstream/master
+=======
 >>>>>>> upstream/master
             camera.position.z = 0;
             controls = new THREE.FirstPersonControls( camera );
@@ -417,6 +471,10 @@
             controls.lookVertical = false;           
             var clock = new THREE.Clock();
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            
+>>>>>>> upstream/master
 =======
             
 >>>>>>> upstream/master
@@ -424,6 +482,7 @@
                 requestAnimationFrame( render );
                 var t = clock.getElapsedTime(); 
                 controls.update( clock.getDelta() );
+<<<<<<< HEAD
 <<<<<<< HEAD
                 renderer.render( scene, camera );
                 
@@ -444,6 +503,8 @@
     </body>
 </html>
 =======
+=======
+>>>>>>> upstream/master
                 
                 
                 	var pos = camera.position;
@@ -479,4 +540,7 @@
 
 
 
+<<<<<<< HEAD
+>>>>>>> upstream/master
+=======
 >>>>>>> upstream/master
